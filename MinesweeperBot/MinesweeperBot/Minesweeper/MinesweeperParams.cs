@@ -8,25 +8,11 @@ namespace MinesweeperBot.Minesweeper
         public int Height { get; }
         public int Mines { get; }
 
-        public MinesweeperParams(int[] args)
+        public MinesweeperParams(int width, int height, int mines)
         {
-            Width = args[0];
-
-            if (args.Length > 2)
-            {
-                Height = args[1];
-                Mines = args[2];
-            }
-            else
-            {
-                Height = args[0];
-                Mines = args[1];
-            }
-
-            if ((Width * Height) < Mines)
-            {
-                throw new ArgumentException("Too many mines!");
-            }
+            Width = width;
+            Height = height;
+            Mines = mines;
         }
 
         public override string ToString()

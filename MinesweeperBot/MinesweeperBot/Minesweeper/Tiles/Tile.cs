@@ -31,10 +31,10 @@ namespace MinesweeperBot.Minesweeper.Tiles
         {
             if (this is Mine)
             {
-                return ":bomb:";
+                return "||:bomb:||";
             }
 
-            return emojis[Text];
+            return $"||{emojis[Text]}||";
         }
     }
 }
