@@ -36,15 +36,7 @@ namespace MinesweeperBot.Minesweeper
 
             foreach (Tile tile in Tiles)
             {
-                if (tile == null)
-                {
-                    sb.Append("[.]");
-                }
-                else
-                {
-                    sb.Append(tile.ToString());
-                }
-
+                sb.Append(tile.GetDiscordEmoji());
             }
 
             return sb.ToString();

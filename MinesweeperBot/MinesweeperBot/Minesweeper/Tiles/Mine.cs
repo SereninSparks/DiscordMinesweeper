@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using MinesweeperBot.Discord;
 
 namespace MinesweeperBot.Minesweeper.Tiles
 {
-    class Mine : Tile
+    class Mine : Tile, IDiscordEmoji
     {
-        public override string ToString()
-        {
-            return string.Format("[{0}]", '.');
-        }
     }
 }
