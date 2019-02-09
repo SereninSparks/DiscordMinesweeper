@@ -1,44 +1,36 @@
 ﻿using System;
 using System.Linq;
+using Microsoft.Extensions.Configuration;
 using MinesweeperBot.Minesweeper;
+using MinesweeperBot.Discord;
+using System.Threading.Tasks;
 
 namespace MinesweeperBot
 {
     class Program
     {
-        static void Main(string[] args) => new Program().Run();
+        private IConfigurationRoot Config;
 
-        public void Run()
+        public Program()
         {
-            var fieldParams = AskParams();
-            var minefield = new Minefield(fieldParams);
-            Console.WriteLine(minefield.ToString());
-            Console.ReadKey();
+            var builder = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json");
+
+            Config = builder.Build();
         }
 
-        private MinesweeperParams AskParams()
+        static void Main(string[] args)
         {
-            Console.WriteLine("Please provide the params for the minesweeper board");
-            Console.WriteLine("<size> <mines>");
-            Console.WriteLine("<width> <height> <mines>");
-            string[] args = Console.ReadLine().Split(' ');
+            var program = new Program();
+            program.Run().GetAwaiter().GetResult();
+        }
 
-            try
-            {
-                int[] parsedArgs = args.Select(arg => int.Parse(arg)).ToArray();
+        public async Task Run()
+        {
+            var bot = new Bot();
+            var token = Config["Discord:Token"];
 
-                if (parsedArgs.Length <= 1)
-                {
-                    return AskParams();
-                }
-
-                return new MinesweeperParams(parsedArgs);
-            }
-            catch (ArgumentException ae)
-            {
-                Console.WriteLine(ae.Message);
-                return AskParams();
-            }
+            await bot.StartAsync(token);
         }
     }
 }
