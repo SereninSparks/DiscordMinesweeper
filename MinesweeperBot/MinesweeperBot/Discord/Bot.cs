@@ -56,12 +56,12 @@ namespace MinesweeperBot.Discord
                     int.TryParse(groups[3].Value, out mines);
                 }
 
-                if (width > 20)
+                if (width > 15)
                 {
                     await message.Channel.SendMessageAsync(string.Format("Whoa there partner, {0} is too wide! Please make it 15 wide or less", width));
                     return;
                 }
-                else if (height > 20)
+                else if (height > 15)
                 {
                     await message.Channel.SendMessageAsync(string.Format("Whoa there partner, {0} is too high! Please make it 15 high or less", width));
                     return;
