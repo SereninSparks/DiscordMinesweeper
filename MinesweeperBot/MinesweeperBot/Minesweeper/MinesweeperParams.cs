@@ -1,4 +1,6 @@
-﻿namespace MinesweeperBot
+﻿using System;
+
+namespace MinesweeperBot.Minesweeper
 {
     public struct MinesweeperParams
     {
@@ -19,6 +21,11 @@
             {
                 Height = args[0];
                 Mines = args[1];
+            }
+
+            if ((Width * Height) < Mines)
+            {
+                throw new ArgumentException("Too many mines!");
             }
         }
 

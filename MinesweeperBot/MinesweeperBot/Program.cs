@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using MinesweeperBot.Minesweeper;
 
 namespace MinesweeperBot
 {
@@ -10,7 +11,8 @@ namespace MinesweeperBot
         public void Run()
         {
             var fieldParams = AskParams();
-            Console.WriteLine(fieldParams);
+            var minefield = new Minefield(fieldParams);
+            Console.WriteLine(minefield.ToString());
             Console.ReadKey();
         }
 
@@ -32,8 +34,9 @@ namespace MinesweeperBot
 
                 return new MinesweeperParams(parsedArgs);
             }
-            catch
+            catch (ArgumentException ae)
             {
+                Console.WriteLine(ae.Message);
                 return AskParams();
             }
         }
