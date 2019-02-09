@@ -30,12 +30,14 @@ namespace MinesweeperBot.Minesweeper
         private void SetMines(int width, int height, int mines)
         {
             int minesSet = 0;
-            var r = new Random();
 
             while (minesSet < mines)
-            {
-                int x = r.Next(0, width);
-                int y = r.Next(0, width);
+            { 
+                var rx = new Random(Guid.NewGuid().GetHashCode());
+                var ry = new Random(Guid.NewGuid().GetHashCode());
+
+                int x = rx.Next(0, width);
+                int y = ry.Next(0, width);
 
                 var row = Rows[y];
 
